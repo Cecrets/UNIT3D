@@ -1,0 +1,24 @@
+name: Extract ZIP File
+
+on:
+  push:
+    paths:
+      - 'UNIT3D-1.8.8.zip'  # Replace with the exact name of your ZIP file
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Extract ZIP file
+        run: |
+          unzip your-file.zip -d extracted-files/
+          mv extracted-files/* .
+          rm -rf extracted-files
+          git add .
+          git commit -m "Extract ZIP contents"
+          git push
+          
